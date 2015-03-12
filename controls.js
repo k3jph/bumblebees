@@ -3,10 +3,8 @@ $(document)
         anim.reset();
 
         // starter ants
-        anim.ants.push(ant(util.random(0, (anim.cols - 1)), util.random(0, (
-            anim.rows - 1)), util.random(0, 3)));
-        anim.ants.push(ant(util.random(0, (anim.cols - 1)), util.random(0, (
-            anim.rows - 1)), util.random(0, 3)));
+        anim.ants.push(ant(util.random(0, (anim.cols - 1)), util.random(0, (anim.rows - 1)), util.random(0, 3)));
+        anim.ants.push(ant(util.random(0, (anim.cols - 1)), util.random(0, (anim.rows - 1)), util.random(0, 3)));
 
         anim.start();
 

@@ -38,7 +38,6 @@ var ant = function(x, y, r, t) {
 }
 
 var anim = {
-
     interval: false,
 
     tick: function() {
@@ -50,17 +49,17 @@ var anim = {
 
                 if (this.clicks[i][2] == 'upant')
                     this.putNewAnt(x, y, UPANT);
-				if (this.clicks[i][2] == 'rtant')
+                if (this.clicks[i][2] == 'rtant')
                     this.putNewAnt(x, y, RTANT);
-				if (this.clicks[i][2] == 'dnant')
+                if (this.clicks[i][2] == 'dnant')
                     this.putNewAnt(x, y, DNANT);
                 if (this.clicks[i][2] == 'ltant')
                     this.putNewAnt(x, y, LTANT);
                 if (this.clicks[i][2] == 'reddot')
                     this.putBlock(x, y, REDDOT);
-				if (this.clicks[i][2] == 'bludot')
+                if (this.clicks[i][2] == 'bludot')
                     this.putBlock(x, y, BLUDOT);
-				if (this.clicks[i][2] == 'clcell')
+                if (this.clicks[i][2] == 'clcell')
                     this.putBlock(x, y, CLCELL);
             }
             this.clicks = [];
@@ -76,33 +75,32 @@ var anim = {
         this.counter++;
     },
 
-	drawDot: function(i, c) {
-		this.canvas.beginPath();
-		this.canvas.arc(this.todraw[i][0] * this.cellsize + this.cellsize / 2,
-						this.todraw[i][1] * this.cellsize + this.cellsize / 2,
-						this.cellsize * 1/4, 0, 2 * Math.PI, false);
-		this.canvas.fillStyle = c;
-		this.canvas.fill();
-		this.canvas.lineWidth = 0;
-		this.canvas.strokeStyle = c;
-		this.canvas.stroke();
-	},
+    drawDot: function(i, c) {
+        this.canvas.beginPath();
+        this.canvas.arc(this.todraw[i][0] * this.cellsize + this.cellsize / 2,
+            this.todraw[i][1] * this.cellsize + this.cellsize / 2,
+            this.cellsize * 1 / 4, 0, 2 * Math.PI, false);
+        this.canvas.fillStyle = c;
+        this.canvas.fill();
+        this.canvas.lineWidth = 0;
+        this.canvas.strokeStyle = c;
+        this.canvas.stroke();
+    },
 
     draw: function() {
-
         for (var i in this.todraw) {
-			this.canvas.fillStyle = "black";
-			this.canvas.fillRect(this.todraw[i][0] * this.cellsize,
-								 this.todraw[i][1] * this.cellsize,
-								 this.cellsize, this.cellsize);
+            this.canvas.fillStyle = "black";
+            this.canvas.fillRect(this.todraw[i][0] * this.cellsize,
+                this.todraw[i][1] * this.cellsize,
+                this.cellsize, this.cellsize);
 
-			if(this.todraw[i][2] == REDDOT)
-				this.drawDot(i, "red");
-			if(this.todraw[i][2] == BLUDOT)
-				this.drawDot(i, "blue");
+            if (this.todraw[i][2] == REDDOT)
+                this.drawDot(i, "red");
+            if (this.todraw[i][2] == BLUDOT)
+                this.drawDot(i, "blue");
 
-			if(this.todraw[i][2] >= UPANT)
-				this.drawDot(i, "white");
+            if (this.todraw[i][2] >= UPANT)
+                this.drawDot(i, "white");
         }
 
         this.todraw = [];
@@ -121,12 +119,10 @@ var anim = {
         this.todraw.push([x, y, 2]);
     },
 
-
     update: function(board, ant) {
-
         if (!this.running) return;
 
-		//  On a red dot, turn right.  On a blue dot, turn left.
+        //  On a red dot, turn right.  On a blue dot, turn left.
         if (board[ant.currY][ant.currX] == REDDOT) {
             ant.currR = (ant.currR == LTANT) ? UPANT : (ant.currR + 1);
             this.putBlock(ant.currX, ant.currY, BLUDOT);
@@ -134,8 +130,8 @@ var anim = {
             ant.currR = (ant.currR == UPANT) ? LTANT : (ant.currR - 1);
             this.putBlock(ant.currX, ant.currY, REDDOT);
         } else {
-			this.putBlock(ant.currX, ant.currY, CLCELL);
-		}
+            this.putBlock(ant.currX, ant.currY, CLCELL);
+        }
 
         // 2 advance in the direction i should move
         if (ant.currR == UPANT) {
@@ -167,11 +163,9 @@ var anim = {
 
         // draw ant
         this.todraw.push([ant.currX, ant.currY, ant.currR]);
-
     },
 
     reset: function() {
-
         this.fps = $('#c_speed')
             .val();
         this.cellsize = $('#c_cellsize')
@@ -219,8 +213,6 @@ var anim = {
                 this.board[i][j] = 0;
             }
         }
-
-
     },
 
     start: function() {
@@ -230,16 +222,13 @@ var anim = {
         this.interval = setInterval(function() {
             anim.tick();
         }, 1000 / this.fps);
-
     },
 
     stop: function() {
         clearInterval(this.interval);
     },
 
-
     stopRunning: function() {
         this.running = false;
     }
 }
-

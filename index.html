@@ -1,77 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Langton's Ants in Javascript - Ross Scrivener</title>
-    <meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
-    <link href="board.css" rel="stylesheet" type="text/css">
-    <script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
-    <script src="board.js" type="text/javascript"></script>
-	<script src="controls.js" type="text/javascript"></script>
-</head>
+    <head>
+        <title>Langton's Ants in Javascript - Ross Scrivener</title>
+        <meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+        <link href="board.css" rel="stylesheet" type="text/css">
+        <script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+        <script src="board.js" type="text/javascript"></script>
+        <script src="controls.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <canvas height="0" id="canvas" width="0"></canvas>
+        <div id="controls">
+            <strong>About</strong>
+            <p>
+                An example of <a href="http://scrivna.com/blog/langtons-ants-in-javascript">Langton's Ants written in Javascript</a> (<a href="http://en.wikipedia.org/wiki/Langton's_ant">wiki</a>). Each "Ant" obeys only 2 rules..
+            </p>
+            <p>
+                1) At a black square, turn 90&deg; right, flip the colour, move forward one unit<br>
+                2) At a green square, turn 90&deg; left, flip the colour, move forward one unit
+            </p>
+            <p>
+                <a href="http://scrivna.com/blog/langtons-ants-in-javascript">Read More &raquo;</a>
+            </p>
 
-<body>
-    <canvas height="0" id="canvas" width="0"></canvas>
+			<strong>Controls</strong>
+            <p>
+              <label>Speed (<span id="c_speed_indicator"></span>)</label>
+			  <input id="c_speed" max="100" min="1" style="width: 75%;" type="range" value="10">
+            </p>
+            <p>
+              <label>
+				Cell Size (<span id="c_cellsize_indicator"></span>)
+				<input id="c_restart" type="button" value="Restart">
+			  </label>
+			  <input id="c_cellsize" max="50" min="1" style="width: 75%;" type="range" value="40">
+            </p>
 
-    <div id="controls">
-        <strong>About</strong>
+			<p>
+              <label>Clicking creates:</label>
 
-        <p>An example of <a href="http://scrivna.com/blog/langtons-ants-in-javascript">Langton's Ants written in Javascript</a> (<a href="http://en.wikipedia.org/wiki/Langton's_ant">wiki</a>). Each "Ant" obeys only 2 rules..</p>
+			  <!-- Create a new ant -->
+              <input id="c_clicking_upant" name="c_clicking" type="radio" value="upant"> <label for="c_clicking_upant" style="display: inline;">an up ant</label><br>
+              <input id="c_clicking_rtant" name="c_clicking" type="radio" value="rtant"> <label for="c_clicking_rtant" style="display: inline;">a right ant</label><br>
+              <input id="c_clicking_dnant" name="c_clicking" type="radio" value="dnant"> <label for="c_clicking_dnant" style="display: inline;">a down ant</label><br>
+              <input id="c_clicking_ltant" name="c_clicking" type="radio" value="ltant"> <label for="c_clicking_ltant" style="display: inline;">a left ant</label><br>
+            </p>
 
-        <p>1) At a black square, turn 90&deg; right, flip the colour, move forward one unit<br>
-        2) At a green square, turn 90&deg; left, flip the colour, move forward one unit</p>
+            <p>
+                <!-- Create a the board -->
+                <input id="c_clicking_reddot" name="c_clicking" type="radio" value="reddot"> <label for="c_clicking_reddot" style="display: inline;">a red dot</label><br>
+                <input id="c_clicking_bludot" name="c_clicking" type="radio" value="bludot"> <label for="c_clicking_bludot" style="display: inline;">a blue dot</label><br>
+                <input id="c_clicking_clcell" name="c_clicking" type="radio" value="clcell"> <label for="c_clicking_clcell" style="display: inline;">clear the cell</label><br>
+            </p>
 
-        <p><a href="http://scrivna.com/blog/langtons-ants-in-javascript">Read More &raquo;</a></p><strong>Controls</strong>
-
-        <p>
-		  <label>Speed (<span id="c_speed_indicator"></span>)</label>
-		  <input id="c_speed" max="100" min="1" style="width: 75%;" type="range" value="10">
-		</p>
-
-		<p>
-		  <label>
-			Cell Size (<span id="c_cellsize_indicator"></span>)
-			<input id="c_restart" type="button" value="Restart" />
-		  </label>
-		  <input id="c_cellsize" max="50" min="1" style="width: 75%;" type="range" value="40" />
-		</p>
-
-        <p>
-		  <label>Clicking creates:</label>
-
-		  <!-- Create a new ant -->
-		  <input id="c_clicking_upant" name="c_clicking" type="radio" value="upant">
-		  <label for="c_clicking_upant" style="display: inline;">an up ant</label><br />
-
-		  <input id="c_clicking_rtant" name="c_clicking" type="radio" value="rtant">
-		  <label for="c_clicking_rtant" style="display: inline;">a right ant</label><br />
-
-		  <input id="c_clicking_dnant" name="c_clicking" type="radio" value="dnant">
-		  <label for="c_clicking_dnant" style="display: inline;">a down ant</label><br />
-
-		  <input id="c_clicking_ltant" name="c_clicking" type="radio" value="ltant">
-		  <label for="c_clicking_ltant" style="display: inline;">a left ant</label><br />
-		</p>
-
-		<p>
-		  <!-- Create a red dot -->
-		  <input id="c_clicking_reddot" name="c_clicking" type="radio" value="reddot" />
-		  <label for="c_clicking_reddot" style="display: inline;">a red dot</label><br />
-
-		  <!-- Create a blue dot -->
-		  <input id="c_clicking_bludot" name="c_clicking" type="radio" value="bludot" />
-		  <label for="c_clicking_bludot" style="display: inline;">a blue dot</label><br />
-
-		  <!-- Clear the cell -->
-		  <input id="c_clicking_clcell" name="c_clicking" type="radio" value="clcell" />
-		  <label for="c_clicking_clcell" style="display: inline;">clear the cell</label><br />
-		</p>
-
-		<p>
-		  <input id="c_stop" type="button" value="Stop" /> &gt;
-		  <input id="c_reset" type="button" value="Clear" /> &gt;
-		  <input id="c_start" type="button" value="Start" />
-		</p>
-
-    </div>
-</body>
+            <p>
+                <input id="c_stop" type="button" value="Stop"> &gt; <input id="c_reset" type="button" value="Clear"> &gt; <input id="c_start" type="button" value="Start">
+            </p>
+        </div>
+    </body>
 </html>
