@@ -21,17 +21,56 @@
 
         <p><a href="http://scrivna.com/blog/langtons-ants-in-javascript">Read More &raquo;</a></p><strong>Controls</strong>
 
-        <p><label>Speed (<span id="c_speed_indicator"></span>)</label> <input id="c_speed" max="100" min="1" style="width: 75%;" type="range" value="60"></p>
+        <p>
+		  <label>Speed (<span id="c_speed_indicator"></span>)</label>
+		  <input id="c_speed" max="100" min="1" style="width: 75%;" type="range" value="10">
+		</p>
 
-        <p><label>Cell Size (<span id="c_cellsize_indicator"></span>) <input id="c_restart" type="button" value="Restart"></label> <input id="c_cellsize" max="50" min="1" style="width: 75%;" type="range" value="10"></p>
+		<p>
+		  <label>
+			Cell Size (<span id="c_cellsize_indicator"></span>)
+			<input id="c_restart" type="button" value="Restart" />
+		  </label>
+		  <input id="c_cellsize" max="50" min="1" style="width: 75%;" type="range" value="40" />
+		</p>
 
-        <p><label>Clicking creates:</label> <input checked="true" id="c_clicking_ant" name="c_clicking" type="radio" value="ant"> <label for="c_clicking_ant" style="display: inline;">an Ant</label><br>
-        <input id="c_clicking_block" name="c_clicking" type="radio" value="block"> <label for="c_clicking_block" style="display: inline;">a Block</label><br>
-        <input id="c_clicking_pat1" name="c_clicking" type="radio" value="pat1"> <label for="c_clicking_pat1" style="display: inline;">Oscillator</label><br>
-        <input id="c_clicking_pat2" name="c_clicking" type="radio" value="pat2"> <label for="c_clicking_pat2" style="display: inline;">Growing Square</label><br>
-        <input id="c_clicking_pat3" name="c_clicking" type="radio" value="pat3"> <label for="c_clicking_pat3" style="display: inline;">Move Line</label></p>
+        <p>
+		  <label>Clicking creates:</label>
 
-        <p><input id="c_stop" type="button" value="Stop"> &gt; <input id="c_reset" type="button" value="Clear"> &gt; <input id="c_start" type="button" value="Start"></p>
+		  <!-- Create a new ant -->
+		  <input id="c_clicking_upant" name="c_clicking" type="radio" value="upant">
+		  <label for="c_clicking_upant" style="display: inline;">an up ant</label><br />
+
+		  <input id="c_clicking_rtant" name="c_clicking" type="radio" value="rtant">
+		  <label for="c_clicking_rtant" style="display: inline;">a right ant</label><br />
+
+		  <input id="c_clicking_dnant" name="c_clicking" type="radio" value="dnant">
+		  <label for="c_clicking_dnant" style="display: inline;">a down ant</label><br />
+
+		  <input id="c_clicking_ltant" name="c_clicking" type="radio" value="ltant">
+		  <label for="c_clicking_ltant" style="display: inline;">a left ant</label><br />
+		</p>
+
+		<p>
+		  <!-- Create a red dot -->
+		  <input id="c_clicking_reddot" name="c_clicking" type="radio" value="reddot" />
+		  <label for="c_clicking_reddot" style="display: inline;">a red dot</label><br />
+
+		  <!-- Create a blue dot -->
+		  <input id="c_clicking_bludot" name="c_clicking" type="radio" value="bludot" />
+		  <label for="c_clicking_bludot" style="display: inline;">a blue dot</label><br />
+
+		  <!-- Clear the cell -->
+		  <input id="c_clicking_clcell" name="c_clicking" type="radio" value="clcell" />
+		  <label for="c_clicking_clcell" style="display: inline;">clear the cell</label><br />
+		</p>
+
+		<p>
+		  <input id="c_stop" type="button" value="Stop" /> &gt;
+		  <input id="c_reset" type="button" value="Clear" /> &gt;
+		  <input id="c_start" type="button" value="Start" />
+		</p>
+
     </div>
 </body>
 </html>
