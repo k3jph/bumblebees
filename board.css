@@ -1,0 +1,128 @@
+html, body {
+    background: #000;
+    padding:0;
+    margin:0
+}
+
+* {
+    -moz-user-select:none;
+    -webkit-user-select:none;
+    user-select:none
+}
+
+a {
+    color:# bbb
+}
+
+#
+controls {
+    font - family: Verdana;
+    font - size: 90 % ;
+    box - sizing: border - box; - moz - box - sizing: border - box;
+    color: #fff;
+    display: block;
+    position: absolute;
+    top: 5 % ;
+    left: -300px;
+    background: rgba(80, 80, 80, .9);
+    padding: 20px 30px 20px 20px;
+    width: 330px;
+    transition: left.5s; - moz - transition: left.5s; - webkit - transition: left.5s; - o - transition: left.5s
+}
+
+#
+controls: hover {
+    background: rgba(100, 100, 100, .9)
+}
+
+#
+controls.active {
+    left: 0
+}
+
+#
+controls p {
+    margin: 15px 0
+}
+
+#
+controls label {
+    display: block;
+    padding: 0 0 5px
+}
+
+#
+controls: after {
+    content: ">";
+    font - weight: 700;
+    position: absolute;
+    right: 10px;
+    top: 45 %
+}
+
+#
+controls.active: after {
+    content: "<"
+}html,body {
+    background:#000;
+    padding:0;
+    margin:0
+}
+
+* {
+    -moz-user-select:none;
+    -webkit-user-select:none;
+    user-select:none
+}
+
+a {
+    color:#bbb
+}
+
+#controls {
+    font-family:Verdana;
+    font-size:90%;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    color:#fff;
+    display:block;
+    position:absolute;
+    top:5%;
+    left:-300px;
+    background:rgba(80,80,80,.9);
+    padding:20px 30px 20px 20px;
+    width:330px;
+    transition:left .5s;
+    -moz-transition:left .5s;
+    -webkit-transition:left .5s;
+    -o-transition:left .5s
+}
+
+#controls:hover {
+    background:rgba(100,100,100,.9)
+}
+
+#controls.active {
+    left:0
+}
+
+#controls p {
+    margin:15px 0
+}
+
+#controls label {
+    display:block;
+    padding:0 0 5px
+}
+
+#controls:after {
+    content:">";
+    font-weight:700;
+    position:absolute;
+    right:10px;
+    top:45%
+}
+
+#controls.active:after {
+    content:"<"
+}
