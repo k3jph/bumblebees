@@ -2,10 +2,10 @@ var CLCELL = 0x00;
 var REDDOT = 0x10;
 var BLUDOT = 0x11;
 
-var UPANT = 0x20;
-var RTANT = 0x21;
-var DNANT = 0x22;
-var LTANT = 0x23;
+var UPBEE = 0x20;
+var RTBEE = 0x21;
+var DNBEE = 0x22;
+var LTBEE = 0x23;
 
 var util = util || {}
 
@@ -28,7 +28,7 @@ util.random = function(minVal, maxVal, floatVal) {
         floatVal);
 }
 
-var ant = function(x, y, r, t) {
+var bee = function(x, y, r, t) {
     return {
         currX: x,
         currY: y,
@@ -47,14 +47,14 @@ var anim = {
                 var x = Math.floor(this.clicks[i][0] / this.cellsize);
                 var y = Math.floor(this.clicks[i][1] / this.cellsize);
 
-                if (this.clicks[i][2] == 'upant')
-                    this.putNewAnt(x, y, UPANT);
-                if (this.clicks[i][2] == 'rtant')
-                    this.putNewAnt(x, y, RTANT);
-                if (this.clicks[i][2] == 'dnant')
-                    this.putNewAnt(x, y, DNANT);
-                if (this.clicks[i][2] == 'ltant')
-                    this.putNewAnt(x, y, LTANT);
+                if (this.clicks[i][2] == 'upbee')
+                    this.putNewbee(x, y, UPBEE);
+                if (this.clicks[i][2] == 'rtbee')
+                    this.putNewbee(x, y, RTBEE);
+                if (this.clicks[i][2] == 'dnbee')
+                    this.putNewbee(x, y, DNBEE);
+                if (this.clicks[i][2] == 'ltbee')
+                    this.putNewbee(x, y, LTBEE);
                 if (this.clicks[i][2] == 'reddot')
                     this.putBlock(x, y, REDDOT);
                 if (this.clicks[i][2] == 'bludot')
@@ -65,10 +65,10 @@ var anim = {
             this.clicks = [];
         }
 
-        // save the current board so all ants act on same basis
+        // save the current board so all bees act on same basis
         var board = this.board.slice();
-        for (var i in this.ants) {
-            this.update(board, this.ants[i]);
+        for (var i in this.bees) {
+            this.update(board, this.bees[i]);
         }
 
         this.draw();
@@ -99,7 +99,7 @@ var anim = {
             if (this.todraw[i][2] == BLUDOT)
                 this.drawDot(i, "blue");
 
-            if (this.todraw[i][2] >= UPANT)
+            if (this.todraw[i][2] >= UPBEE)
                 this.drawDot(i, "white");
         }
 
@@ -114,55 +114,55 @@ var anim = {
         this.todraw.push([x, y, c]);
     },
 
-    putNewAnt: function(x, y, d) {
-        this.ants.push(ant(x, y, d));
+    putNewbee: function(x, y, d) {
+        this.bees.push(bee(x, y, d));
         this.todraw.push([x, y, 2]);
     },
 
-    update: function(board, ant) {
+    update: function(board, bee) {
         if (!this.running) return;
 
         //  On a red dot, turn right.  On a blue dot, turn left.
-        if (board[ant.currY][ant.currX] == REDDOT) {
-            ant.currR = (ant.currR == LTANT) ? UPANT : (ant.currR + 1);
-            this.putBlock(ant.currX, ant.currY, BLUDOT);
-        } else if (board[ant.currY][ant.currX] == BLUDOT) {
-            ant.currR = (ant.currR == UPANT) ? LTANT : (ant.currR - 1);
-            this.putBlock(ant.currX, ant.currY, REDDOT);
+        if (board[bee.currY][bee.currX] == REDDOT) {
+            bee.currR = (bee.currR == LTBEE) ? UPBEE : (bee.currR + 1);
+            this.putBlock(bee.currX, bee.currY, BLUDOT);
+        } else if (board[bee.currY][bee.currX] == BLUDOT) {
+            bee.currR = (bee.currR == UPBEE) ? LTBEE : (bee.currR - 1);
+            this.putBlock(bee.currX, bee.currY, REDDOT);
         } else {
-            this.putBlock(ant.currX, ant.currY, CLCELL);
+            this.putBlock(bee.currX, bee.currY, CLCELL);
         }
 
         // 2 advance in the direction i should move
-        if (ant.currR == UPANT) {
-            ant.currY--;
+        if (bee.currR == UPBEE) {
+            bee.currY--;
         }
-        if (ant.currR == RTANT) {
-            ant.currX++;
+        if (bee.currR == RTBEE) {
+            bee.currX++;
         }
-        if (ant.currR == DNANT) {
-            ant.currY++;
+        if (bee.currR == DNBEE) {
+            bee.currY++;
         }
-        if (ant.currR == LTANT) {
-            ant.currX--;
+        if (bee.currR == LTBEE) {
+            bee.currX--;
         }
 
         // constrian to the board by wrapping around
-        if (ant.currX >= this.cols) {
-            ant.currX = 0;
+        if (bee.currX >= this.cols) {
+            bee.currX = 0;
         }
-        if (ant.currX < 0) {
-            ant.currX = (this.cols - 1);
+        if (bee.currX < 0) {
+            bee.currX = (this.cols - 1);
         }
-        if (ant.currY >= this.rows) {
-            ant.currY = 0;
+        if (bee.currY >= this.rows) {
+            bee.currY = 0;
         }
-        if (ant.currY < 0) {
-            ant.currY = (this.rows - 1);
+        if (bee.currY < 0) {
+            bee.currY = (this.rows - 1);
         }
 
-        // draw ant
-        this.todraw.push([ant.currX, ant.currY, ant.currR]);
+        // draw bee
+        this.todraw.push([bee.currX, bee.currY, bee.currR]);
     },
 
     reset: function() {
@@ -186,8 +186,8 @@ var anim = {
         // hold to-draw items in buffer
         this.todraw = [];
 
-        // ants
-        this.ants = [];
+        // bees
+        this.bees = [];
 
         // work out canvas size
         this.canvas_width = parseInt(window.innerWidth / this.cellsize) *

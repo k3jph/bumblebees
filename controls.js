@@ -41,11 +41,11 @@ $(document)
                 anim.stop();
                 anim.reset();
 
-                // starter ants
-                anim.ants.push(ant(util.random(0, (anim.cols - 1)),
+                // starter bees
+                anim.bees.push(bee(util.random(0, (anim.cols - 1)),
                     util.random(0, (anim.rows - 1)), util.random(
                         0, 3)));
-                anim.ants.push(ant(util.random(0, (anim.cols - 1)),
+                anim.bees.push(bee(util.random(0, (anim.cols - 1)),
                     util.random(0, (anim.rows - 1)), util.random(
                         0, 3)));
 
