@@ -100,7 +100,7 @@ var anim = {
                 this.drawDot(i, "blue");
 
             if (this.todraw[i][2] >= UPBEE)
-                this.drawDot(i, "white");
+                this.drawDot(i, "yellow");
         }
 
         this.todraw = [];
