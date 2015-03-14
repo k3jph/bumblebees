@@ -2,7 +2,9 @@ $(document)
     .ready(function() {
         anim.reset();
         anim.start();
-
+		$("#controls")
+            .toggleClass('active');
+		
         $("#controls")
             .click(function(e) {
                 $("#controls")
