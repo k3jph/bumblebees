@@ -1,3 +1,4 @@
+# The MIT License (MIT)
 **Copyright &copy; 2015-2017, James P. Howard, II &lt;jh@jameshoward.us>**
 
 * * *
